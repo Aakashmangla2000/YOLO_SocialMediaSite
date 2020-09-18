@@ -5,4 +5,6 @@ from social import models
 
 admin.site.register([
     models.Post,
+    models.Friends,
+    models.Like
 ])

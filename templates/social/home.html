@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <ul>
+        {% for post in posts %}
+        <li>
+            {{post}}
+          <br>  {{post.like_set.count}} Likes
+          <br>  {{post.comment_set.count}} Comments
+        </li>            
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
