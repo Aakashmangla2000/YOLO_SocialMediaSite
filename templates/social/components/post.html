@@ -1,19 +1,25 @@
-<div class="card text-black bg-light w-75" style="margin: 20px;">
+<div class="card text-white  w-75 text-center" style="margin: 20px; background-color: #232626;">
     {% if post.image %}
-        <img src="/media/{{ post.image }}" class="card-img-top" style="width: 25%;" alt="...">
     {% endif %}
-    <div class="card-body">
+    <div class="card-body" style="  box-shadow: 2px 2px; box-shadow: rgba(255, 255, 255, 0.596);">
+      <div style="display: flex; flex-direction: row;">
+        <img style="width: 30px; height: 30px;  margin-right: 10px;" src="https://searchusers.xyz/img/userb.png" class="card-img" alt="...">
       <h3 class="card-title">{{ post.user.first_name }} {{ post.user.last_name }}</h3>
-      <p class="card-text"><small class="text-muted">{{post.user}}</small></p>
-      <span>Posted at: {{ post.created_at }}</span>
+      </div>     
+      <p class="card-text" style="float: left; color: rgba(255, 255, 255, 0.637); margin-left: 40px;"><small class="">@{{post.user}}</small></p>
       <br><br>
-      <p class="card-text">"{{ post.content }}"</p>
+      <!-- <img src="/media/{{ post.image }}" class="card-img-top" style="width: 25%;" alt="..."> -->
+      <p class="card-text" style="margin: 0 auto;">"{{ post.content }}"</p>
+      <br>
+      <img style="width: 400px;" src="https://i.pinimg.com/originals/aa/dd/07/aadd07cb2a82d473b8bc52c9371e701b.jpg" class="card-img-top" style="width: 25%;" alt="...">
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <br><br>
       <div class="card-body">
-        <button onclick="likePost({{post.id}})" class="btn btn-primary">{{post.likes.count}} Likes</button>
+        <button style="float: left; margin-right: 10px;" onclick="likePost({{post.id}})" class="btn btn-primary">{{post.likes.count}} Likes</button>
         <!-- <a href="#exampleModal" class="card-link">{{post.comments.count}} Comments</a> -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal{{post.id}}">
+        <button style="float: left;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal{{post.id}}">
             {{post.comments.count}} Comments  </button>
+            <span style="font-size: 10px; float: right; margin-top: 20px;">Posted at: {{ post.created_at }}</span>
       </div>
     </div>
   </div>

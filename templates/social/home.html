@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    textarea{
+        height: 50px;
+    }
+</style>
+<br><br><br><br>
 <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-    <h1>Your Posts</h1>
+   <br>
+    <h1 style="font-size: 60px;">Your Posts</h1>
 <br>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
         New Post</button>
 
-    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" style="color: black;" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -18,9 +25,10 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="/post/" method="post" enctype="multipart/form-data">
+                <form action="/post/" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
                     {%csrf_token%}
                     {{post_form}}
+                    <br>
                     <button class="btn btn-primary" type="submit">Post</button>
                 </form>
             </div>
