@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="col">
+    <div class="container col-3" style="display: flex; align-items: center;">
+        <div class="col" style="margin: 10px;">
             <form action="" method="post" class="card text-center" style="margin: 10px;">
                 <div class="card-body">
                   <h2 class="card-title">Login</h2>
                   <!-- <form action="" method="post"> -->
                     {% csrf_token %}
                     {{form}}
-                    <br>
+                    <br><br>
                     <button class="btn btn-outline-primary type="submit">LOGIN</button>
                   <!-- </form> -->
                 </div>

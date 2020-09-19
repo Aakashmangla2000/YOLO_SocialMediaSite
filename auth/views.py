@@ -8,6 +8,9 @@ from auth import forms
 # Create your views here.
 class Login(LoginView):
     template_name = 'auth/login.html'
+    redirect_authenticated_user = True
+    success_url = ''
+
     # def post(self, request):
     #     login(request, request.user)
     #     return redirect('/')
