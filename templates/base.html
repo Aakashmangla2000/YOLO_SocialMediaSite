@@ -23,9 +23,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/profile">Profile</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="#">Friends</a>
-                </li>
+                </li> -->
               </ul>
               {% if user.is_authenticated %}
               <span class="navbar-text">
@@ -33,6 +33,7 @@
               </span>
               <a href="/auth/logout">Logout</a>
               {% else %}
+              <a href="/auth/signup">Sign Up |</a>
               <a href="/auth/login">Login</a>
               {% endif %}
             </div>
