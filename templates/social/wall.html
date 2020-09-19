@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{user}}
+<div class="container">
+    <h1>Wall</h1>
     {% for post in posts %}
-        {{post}}
+        {% include 'social/components/post.html' %}
     {% endfor %}
+</div>
 
 {% endblock %}

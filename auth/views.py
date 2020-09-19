@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 from django.contrib.auth import login
+from auth import forms
 
 from auth import forms
 # Create your views here.
 class Login(LoginView):
     template_name = 'auth/login.html'
+    # if user.is_authenticated():
+    #     redirect('/')
 
 class Logout(LogoutView):
     pass
@@ -14,7 +17,7 @@ class Logout(LogoutView):
 class SignUp(View):
     def get(self, request):
         context = {
-            "form": SignUpForm()
+            "form": forms.SignUpForm()
         }
         return render(request, 'auth/signup.html', context)
 
