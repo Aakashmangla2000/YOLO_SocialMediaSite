@@ -6,5 +6,6 @@ urlpatterns = [
     path('home/', views.Home.as_view()),
     path('post/', views.Post.as_view()),
     path('post/<int:pk>/like', views.PostLike),
+    path('profile/', views.profile, name = 'profile'),
     path('', views.Wall.as_view()),
 ]

@@ -43,6 +43,10 @@ class Post(View):
         
         return redirect('/home/')
 
+def profile(request):
+    context = {}
+    return render(request, 'social/profile.html', context)
+
 class PostLike(SingleObjectMixin):
     model = models.Post
     def post(self, request):

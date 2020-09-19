@@ -8,11 +8,12 @@ from auth import forms
 # Create your views here.
 class Login(LoginView):
     template_name = 'auth/login.html'
-    # if user.is_authenticated():
-    #     redirect('/')
+    # def post(self, request):
+    #     login(request, request.user)
+    #     return redirect('/')
 
 class Logout(LogoutView):
-    pass
+    template_name = 'auth/logout.html'
 
 class SignUp(View):
     def get(self, request):

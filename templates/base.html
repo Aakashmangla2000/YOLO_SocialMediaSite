@@ -21,7 +21,7 @@
                   <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Profile</a>
+                  <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Friends</a>
@@ -29,11 +29,11 @@
               </ul>
               {% if user.is_authenticated %}
               <span class="navbar-text">
-                Hello, {{ user.first_name }} {{ user.last_name }}
+                Hello, {{ user.first_name }} {{ user.last_name }} | 
               </span>
-              <li style="color: white; float: right;"><a href="/auth/logout">Logout</a></li>
+              <a href="/auth/logout">Logout</a>
               {% else %}
-              <li><a href="/auth/login">Login</a></li>
+              <a href="/auth/login">Login</a>
               {% endif %}
             </div>
           </nav>
