@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from django.views import View
 from django.views.generic.detail import SingleObjectMixin
+from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
@@ -47,9 +47,28 @@ def profile(request):
     context = {}
     return render(request, 'social/profile.html', context)
 
-class PostLike(SingleObjectMixin):
+class PostLike(View):
     model = models.Post
-    def post(self, request):
-        models.Like.objects.create(post = self.object, user = request.user)
+
+    def post(self, request, pk):
+        post = self.model.objects.get(pk = pk)
+        models.Like.objects.create(post = post, user = request.user)
         return HttpResponse(code = 204)
 
+class PostComment(View):
+    model = models.Post
+    form = forms.PostComment
+
+    def post(self, request, pk):
+        post = self.model.objects.get(pk = pk)
+        form = self.form(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            return HttpResponse(code = 204)
+    
+        print(form.errors)
+        return HttpResponse('Error')

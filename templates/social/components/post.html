@@ -1,6 +1,5 @@
 <div class="card text-white  w-75 text-center" style="margin: 20px; background-color: #232626;">
-    {% if post.image %}
-    {% endif %}
+    
     <div class="card-body" style="  box-shadow: 2px 2px; box-shadow: rgba(255, 255, 255, 0.596);">
       <div style="display: flex; flex-direction: row;">
         <img style="width: 30px; height: 30px;  margin-right: 10px;" src="https://searchusers.xyz/img/userb.png" class="card-img" alt="...">
@@ -8,13 +7,16 @@
       </div>     
       <p class="card-text" style="float: left; color: rgba(255, 255, 255, 0.637); margin-left: 40px;"><small class="">@{{post.user}}</small></p>
       <br><br>
-      <!-- <img src="/media/{{ post.image }}" class="card-img-top" style="width: 25%;" alt="..."> -->
       <p class="card-text" style="margin: 0 auto;">"{{ post.content }}"</p>
       <br>
-      <img style="width: 400px;" src="https://i.pinimg.com/originals/aa/dd/07/aadd07cb2a82d473b8bc52c9371e701b.jpg" class="card-img-top" style="width: 25%;" alt="...">
+      {% if post.image %}
+      <img style="width: 400px;" src="/media/{{ post.image }}" class="card-img-top" style="width: 25%;" alt="...">
+    {% endif %}
+      <!-- <img style="width: 400px;" src="https://i.pinimg.com/originals/aa/dd/07/aadd07cb2a82d473b8bc52c9371e701b.jpg" class="card-img-top" style="width: 25%;" alt="..."> -->
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       <br><br>
       <div class="card-body">
+        <!-- <a href="" onclick=likePost({{post.id}})>{{post.likes.count}} Likes</a> -->
         <button style="float: left; margin-right: 10px;" onclick="likePost({{post.id}})" class="btn btn-primary">{{post.likes.count}} Likes</button>
         <!-- <a href="#exampleModal" class="card-link">{{post.comments.count}} Comments</a> -->
         <button style="float: left;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal{{post.id}}">
@@ -28,11 +30,11 @@
 
   
   <!-- Modal -->
-  <div class="modal fade" id="postModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" style="color: black;" id="postModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+          <h5 class="modal-title text-black" id="exampleModalLabel">Comments</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -43,6 +45,14 @@
               <li>{{ comment.user.first_name }}: {{ comment.content }}</li>
               {% endfor %}
           </ul>
+          <form action="" onsubmit="commentPost({{post.id}}, document.getElementById('comment{{post.id}}').value)">
+            <div class="input-field" style="display: flex; flex-direction: column;">
+              <!-- <label for="comment{{post.id}}">Comment</label> -->
+              <input type="text" placeholder="Comment..." id="comment{{post.id}}" class="validate">
+              <br>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </form>
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
