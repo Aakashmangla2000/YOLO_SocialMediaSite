@@ -20,6 +20,11 @@ class Wall(LoginRequiredMixin, ListView):
 
         return models.Post.objects.filter(user__in = friendIds).order_by('-created_at')
 
+    def get_context_data(self, *args, **kwargs):
+        data = super().get_context_data(*args, **kwargs)
+        data['comment_form'] = forms.PostComment
+        return data
+
 class Home(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
     template_name =  'social/home.html'
@@ -31,6 +36,7 @@ class Home(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         data = super().get_context_data(*args, **kwargs)
         data['post_form'] = forms.PostForm
+        data['comment_form'] = forms.PostComment
         return data
 
 class Post(View):
@@ -57,18 +63,36 @@ class PostLike(View):
 
 class PostComment(View):
     model = models.Post
-    form = forms.PostComment
-
     def post(self, request, pk):
-        post = self.model.objects.get(pk = pk)
-        form = self.form(request.POST)
-
+        form = forms.PostComment(request.POST, request.FILES)
         if form.is_valid():
-            comment = form.save(commit = False)
-            comment.post = post
+            comment = form.save(commit=False)
             comment.user = request.user
+            print(pk,request.user,self.post)
+            post = self.model.objects.get(pk = pk)
+            comment.post = post
             comment.save()
-            return HttpResponse(code = 204)
+        
+        return redirect('/home/')
+
+
+
+# class PostComment(View):
+#     model = models.Post
+#     form = forms.PostComment
+
+#     def post(self, request, pk):
+#         post = self.model.objects.get(pk = pk)
+#         form = self.form(request.POST, request.FILES)
+
+#         if form.is_valid():
+#             comment = form.save(commit = False)
+#             comment.post = post
+#             comment.user = request.user
+#             comment.save()
+#             # return HttpResponse(code = 204)
+#             return redirect('/home/')
     
-        print(form.errors)
-        return HttpResponse('Error')
+#         print(form.errors)
+#         # return HttpResponse('Error')
+#         return render(request, 'home.html', {'comment_form': form})
