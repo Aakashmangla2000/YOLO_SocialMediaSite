@@ -25,7 +25,7 @@ SECRET_KEY = '^wl70(v8w(1&74!+ec2*++pmo6u#4_^gl+8$nu)3j=t7@(^0!*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yolosocial.herokuapp.com/']
+ALLOWED_HOSTS = ['yolosocial.herokuapp.com','127.0.0.1']
 
 
 # Application definition
