@@ -25,7 +25,7 @@ SECRET_KEY = '^wl70(v8w(1&74!+ec2*++pmo6u#4_^gl+8$nu)3j=t7@(^0!*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yolosocial.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['yolosocial.herokuapp.com','127.0.0.1','localhost','0.0.0.0']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'yolo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2hud5vpgg023u',
+        'HOST': 'ec2-34-234-185-150.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'kpkasujuicrdrl',
+        'PASSWORD': 'd5ead22e895a5e85de7a8bbc382aa59d37e72b3fd481b1dc2de91a754c767be9',
     }
 }
 
