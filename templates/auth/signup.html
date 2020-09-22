@@ -11,19 +11,35 @@
         display: none;
     }
     form{
-        padding: 30px;
+        padding: 10px;
         display: flex;
         flex-direction: column;
     }
+    input{
+        width: 100%;
+        height: 10px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 5px;
+    }
+    label{
+        float: left;
+    }
+    
 </style>
 <br><br>
-    <div class="container col-lg-3" style="height: 100vh;" >
-        <div class="col">
+    <div class="container col-lg-3" style="height: 100%;" >
+        <div class="col" style="height: 80%;">
             <br><br>
-            <form action="" method="post" class="card text-center" style="height: 100%; background-color: #232626; color: white; margin: 10px; align-items: center;  border: 1px solid white; ">
+            <form action="" method="post" class="card text-center" style="height: 80%; background-color: #232626; color: white; margin: 0px; align-items: center;  border: 1px solid white; ">
                 <div class="form-row">
                 <div class="card-body">
                   <h2 class="card-title">Sign Up</h2>
+                  <p>Please fill in this form to create an account.                </p>
+                  <hr>
                   <!-- <form action="" method="post"> -->
                     {% csrf_token %}
                     {{form}}
@@ -34,6 +50,7 @@
                 </div>
             </form>
         </div>
+        <br><br>
     </div>
 
 {% endblock %}
