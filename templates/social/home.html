@@ -16,6 +16,15 @@
       width: 200px;
       border-color: #fff transparent transparent transparent;
     }
+
+    @media screen and (max-width: 480px) {
+  select{
+    width: 100px;
+  }
+  #add_f{
+    /* flex-direction: column; */
+  }
+}
 </style>
 <br><br><br><br>
 <div class="container" style="display: flex; flex-direction: column; align-items: center; height: 100%;">
@@ -26,7 +35,7 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
         New Post</button>
       <br>
-      <div style="display: flex; flex-direction: row;">
+      <div id="add_f" style="display: flex; flex-direction: row;">
         <h5 style="margin-right: 10px; margin-top: 5px;">Username: </h5>
         <form action="/friends/" method="post">
               {%csrf_token%}
