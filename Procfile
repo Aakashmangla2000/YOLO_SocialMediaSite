@@ -1,0 +1,1 @@
+gunicorn yolo.wsgi
