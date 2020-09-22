@@ -1,1 +1,1 @@
-gunicorn yolo.wsgi
+web: gunicorn yolo.wsgi
