@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^wl70(v8w(1&74!+ec2*++pmo6u#4_^gl+8$nu)3j=t7@(^0!*'
+SECRET_KEY = config('SECRET_KEY', default = '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = config('DEBUG', cast = bool, default = True)
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://yolosocial.herokuapp.com/']
 
