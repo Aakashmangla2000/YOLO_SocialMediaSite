@@ -13,6 +13,12 @@
               <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
               <p class="card-text"><small class="text-muted">{{user}}</small></p>
               <p class="card-text">{{user.email}}</p>
+              <p class="card-text">Your Friends:</p>
+              <ul>
+                {%for friend in friends%}
+                <li>{{friend.person2}}</li>
+                {%endfor%}
+              </ul>
             </div>
           </div>
         </div>

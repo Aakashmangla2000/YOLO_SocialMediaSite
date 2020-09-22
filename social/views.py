@@ -37,6 +37,7 @@ class Home(LoginRequiredMixin, ListView):
         data = super().get_context_data(*args, **kwargs)
         data['post_form'] = forms.PostForm
         data['comment_form'] = forms.PostComment
+        data['add_friend'] = forms.PostFriend
         return data
 
 class Post(View):
@@ -49,8 +50,29 @@ class Post(View):
         
         return redirect('/home/')
 
+class Friends(View):
+    def post(self, request):
+        form = forms.PostFriend(request.POST, request.FILES)
+        post = form.save(commit=False)
+        flag = 0
+        for person in models.Friends.objects.filter(person1 = request.user):
+            print(person.person2,post.person2)
+            if post.person2 == person.person2 or post.person2 == request.user:
+                print('exists')
+                flag = 1
+
+        if form.is_valid() and flag == 0:
+            post.person1 = request.user
+            post.save()  
+            print('added')      
+        return redirect('/profile/')
+                
+        
+
 def profile(request):
-    context = {}
+    context = {
+        "friends": models.Friends.objects.filter(person1 = request.user),
+    }
     return render(request, 'social/profile.html', context)
 
 class PostLike(View):

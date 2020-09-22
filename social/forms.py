@@ -10,3 +10,8 @@ class PostComment(forms.ModelForm):
     class Meta:
         model = models.Comment
         fields = ['content']
+
+class PostFriend(forms.ModelForm):
+    class Meta:
+        model = models.Friends
+        fields = ['person2']

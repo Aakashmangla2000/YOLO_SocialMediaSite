@@ -4,17 +4,36 @@
 <style>
     textarea{
         height: 50px;
+        margin-bottom: 20px;
+    }
+    label{
+      display: none;
+    }
+    select{
+      content: "";
+      border: 6px solid transparent;
+      border-radius: 10px;
+      width: 200px;
+      border-color: #fff transparent transparent transparent;
     }
 </style>
 <br><br><br><br>
 <div class="container" style="display: flex; flex-direction: column; align-items: center; height: 100%;">
    <br>
-    <h1 style="font-size: 60px;">Your Posts</h1>
+    <h1 style="font-size: 60px;">Home</h1>
 <br>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
         New Post</button>
-
+      <br>
+      <div style="display: flex; flex-direction: row;">
+        <h5 style="margin-right: 10px; margin-top: 5px;">Username: </h5>
+        <form action="/friends/" method="post">
+              {%csrf_token%}
+              {{add_friend}}  
+          <button style="margin-left: 10px;" type="submit" class="btn btn-primary">Add Friend</button>
+        </form>
+      </div>
     <div class="modal fade" style="color: black;" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

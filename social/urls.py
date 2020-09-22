@@ -9,4 +9,5 @@ urlpatterns = [
     path('profile/', views.profile, name = 'profile'),
     path('post/<int:pk>/comment', views.PostComment.as_view()),
     path('', views.Wall.as_view()),
+    path('friends/', views.Friends.as_view()),
 ]
