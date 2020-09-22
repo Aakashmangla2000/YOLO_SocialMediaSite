@@ -23,7 +23,10 @@
       <br><br>
       <div class="card-body">
         <!-- <a href="" onclick=likePost({{post.id}})>{{post.likes.count}} Likes</a> -->
-        <button style="float: left; margin-right: 10px;" onclick="likePost({{post.id}})" class="btn btn-primary">{{post.likes.count}} Likes</button>
+        <form action="../post/{{post.id}}/like" method="post" enctype="multipart/form-data" >
+          {%csrf_token%}
+          <button style="float: left; margin-right: 10px;" onclick="" class="btn btn-primary">{{post.likes.count}} Likes</button>
+        </form>
         <!-- <a href="#exampleModal" class="card-link">{{post.comments.count}} Comments</a> -->
         <button style="float: left;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal{{post.id}}">
             {{post.comments.count}} Comments  </button>

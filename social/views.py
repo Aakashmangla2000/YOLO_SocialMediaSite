@@ -87,7 +87,11 @@ class PostComment(View):
     model = models.Post
     def post(self, request, pk):
         form = forms.PostComment(request.POST, request.FILES)
-        if form.is_valid():
+
+        
+
+
+        if form.is_valid():           
             comment = form.save(commit=False)
             comment.user = request.user
             print(pk,request.user,self.post)
@@ -96,6 +100,25 @@ class PostComment(View):
             comment.save()
         
         return redirect('/home/')
+
+class PostLike(View):
+    model = models.Post
+
+    def post(self, request, pk):
+        form = forms.PostLike(request.POST, request.FILES)
+        post = self.model.objects.get(pk = pk)
+        flag = 0
+        for like in models.Like.objects.all():
+            if like.user == request.user and like.post == post:
+                flag = 1
+                print('liked')
+
+        if form.is_valid() and flag == 0:
+            like = form.save(commit=False)
+            like.user = request.user
+            like.post = post
+            like.save()
+        return redirect('/')
 
 
 

@@ -15,3 +15,7 @@ class PostFriend(forms.ModelForm):
     class Meta:
         model = models.Friends
         fields = ['person2']
+class PostLike(forms.ModelForm):
+    class Meta:
+        model = models.Like
+        fields = []
